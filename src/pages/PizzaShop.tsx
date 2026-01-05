@@ -84,6 +84,7 @@ function PizzaShop() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState<'home' | 'menu' | 'about' | 'delivery' | 'contacts' | 'reviews' | 'account'>('home');
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [addingToCart, setAddingToCart] = useState<number | null>(null);
   const [user, setUser] = useState<User | null>({
     name: 'Гость',
     phone: '+7 999 999-99-99',
@@ -124,17 +125,24 @@ function PizzaShop() {
   };
 
   const addToCart = (item: MenuItem) => {
-    setCart(prev => {
-      const existing = prev.find(i => i.id === item.id);
-      if (existing) {
-        return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i);
-      }
-      return [...prev, { ...item, quantity: 1 }];
-    });
-    toast({
-      title: 'Добавлено в корзину',
-      description: `${item.name} - ${item.price}₽`,
-    });
+    setAddingToCart(item.id);
+    
+    setTimeout(() => {
+      setCart(prev => {
+        const existing = prev.find(i => i.id === item.id);
+        if (existing) {
+          return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i);
+        }
+        return [...prev, { ...item, quantity: 1 }];
+      });
+      
+      toast({
+        title: 'Добавлено в корзину',
+        description: `${item.name} - ${item.price}₽`,
+      });
+      
+      setAddingToCart(null);
+    }, 300);
   };
 
   const removeFromCart = (id: number) => {
@@ -229,7 +237,7 @@ function PizzaShop() {
               <h2 className="text-3xl font-bold mb-6">Популярные позиции</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {menuData.filter(item => item.category === 'pizza').slice(0, 3).map(item => (
-                  <Card key={item.id} className="hover:shadow-lg transition-shadow">
+                  <Card key={item.id} className="hover:shadow-lg transition-all">
                     <CardHeader>
                       <div className="text-6xl mb-4">{item.image}</div>
                       <CardTitle>{item.name}</CardTitle>
@@ -237,9 +245,13 @@ function PizzaShop() {
                     </CardHeader>
                     <CardFooter className="flex justify-between items-center">
                       <span className="text-2xl font-bold text-primary">{item.price}₽</span>
-                      <Button onClick={() => addToCart(item)}>
-                        <Icon name="ShoppingCart" className="mr-2" size={16} />
-                        В корзину
+                      <Button 
+                        onClick={() => addToCart(item)}
+                        disabled={addingToCart === item.id}
+                        className={addingToCart === item.id ? 'scale-110' : ''}
+                      >
+                        <Icon name={addingToCart === item.id ? 'Check' : 'ShoppingCart'} className="mr-2" size={16} />
+                        {addingToCart === item.id ? 'Добавлено!' : 'В корзину'}
                       </Button>
                     </CardFooter>
                   </Card>
@@ -282,7 +294,7 @@ function PizzaShop() {
               <TabsContent value="pizza" className="mt-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {menuData.filter(item => item.category === 'pizza').map(item => (
-                    <Card key={item.id} className="hover:shadow-lg transition-shadow">
+                    <Card key={item.id} className="hover:shadow-lg transition-all">
                       <CardHeader>
                         <div className="text-6xl mb-4">{item.image}</div>
                         <CardTitle>{item.name}</CardTitle>
@@ -290,9 +302,13 @@ function PizzaShop() {
                       </CardHeader>
                       <CardFooter className="flex justify-between items-center">
                         <span className="text-2xl font-bold text-primary">{item.price}₽</span>
-                        <Button onClick={() => addToCart(item)}>
-                          <Icon name="ShoppingCart" className="mr-2" size={16} />
-                          В корзину
+                        <Button 
+                          onClick={() => addToCart(item)}
+                          disabled={addingToCart === item.id}
+                          className={addingToCart === item.id ? 'scale-110' : ''}
+                        >
+                          <Icon name={addingToCart === item.id ? 'Check' : 'ShoppingCart'} className="mr-2" size={16} />
+                          {addingToCart === item.id ? 'Добавлено!' : 'В корзину'}
                         </Button>
                       </CardFooter>
                     </Card>
@@ -302,7 +318,7 @@ function PizzaShop() {
               <TabsContent value="snacks" className="mt-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {menuData.filter(item => item.category === 'snacks').map(item => (
-                    <Card key={item.id} className="hover:shadow-lg transition-shadow">
+                    <Card key={item.id} className="hover:shadow-lg transition-all">
                       <CardHeader>
                         <div className="text-6xl mb-4">{item.image}</div>
                         <CardTitle>{item.name}</CardTitle>
@@ -310,9 +326,13 @@ function PizzaShop() {
                       </CardHeader>
                       <CardFooter className="flex justify-between items-center">
                         <span className="text-2xl font-bold text-primary">{item.price}₽</span>
-                        <Button onClick={() => addToCart(item)}>
-                          <Icon name="ShoppingCart" className="mr-2" size={16} />
-                          В корзину
+                        <Button 
+                          onClick={() => addToCart(item)}
+                          disabled={addingToCart === item.id}
+                          className={addingToCart === item.id ? 'scale-110' : ''}
+                        >
+                          <Icon name={addingToCart === item.id ? 'Check' : 'ShoppingCart'} className="mr-2" size={16} />
+                          {addingToCart === item.id ? 'Добавлено!' : 'В корзину'}
                         </Button>
                       </CardFooter>
                     </Card>
@@ -322,7 +342,7 @@ function PizzaShop() {
               <TabsContent value="drinks" className="mt-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {menuData.filter(item => item.category === 'drinks').map(item => (
-                    <Card key={item.id} className="hover:shadow-lg transition-shadow">
+                    <Card key={item.id} className="hover:shadow-lg transition-all">
                       <CardHeader>
                         <div className="text-6xl mb-4">{item.image}</div>
                         <CardTitle>{item.name}</CardTitle>
@@ -330,9 +350,13 @@ function PizzaShop() {
                       </CardHeader>
                       <CardFooter className="flex justify-between items-center">
                         <span className="text-2xl font-bold text-primary">{item.price}₽</span>
-                        <Button onClick={() => addToCart(item)}>
-                          <Icon name="ShoppingCart" className="mr-2" size={16} />
-                          В корзину
+                        <Button 
+                          onClick={() => addToCart(item)}
+                          disabled={addingToCart === item.id}
+                          className={addingToCart === item.id ? 'scale-110' : ''}
+                        >
+                          <Icon name={addingToCart === item.id ? 'Check' : 'ShoppingCart'} className="mr-2" size={16} />
+                          {addingToCart === item.id ? 'Добавлено!' : 'В корзину'}
                         </Button>
                       </CardFooter>
                     </Card>
