@@ -81,6 +81,7 @@ function PizzaShop() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState<'home' | 'menu' | 'about' | 'delivery' | 'contacts' | 'reviews' | 'account'>('home');
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [user, setUser] = useState<User | null>({
@@ -640,6 +641,9 @@ function PizzaShop() {
           </div>
           
           <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMobileMenuOpen(true)}>
+              <Icon name="Menu" size={24} />
+            </Button>
             <Button variant="ghost" size="icon" onClick={toggleTheme}>
               <Icon name={theme === 'light' ? 'Moon' : 'Sun'} size={20} />
             </Button>
@@ -770,6 +774,87 @@ function PizzaShop() {
           </p>
         </div>
       </footer>
+
+      <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+        <SheetContent side="left" className="w-[280px]">
+          <SheetHeader>
+            <SheetTitle className="text-left">Меню</SheetTitle>
+          </SheetHeader>
+          <nav className="flex flex-col gap-4 mt-6">
+            <button
+              onClick={() => {
+                setCurrentPage('home');
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-left py-2 px-4 rounded-lg hover:bg-secondary transition-colors flex items-center gap-3"
+            >
+              <Icon name="Home" size={20} />
+              <span>Главная</span>
+            </button>
+            <button
+              onClick={() => {
+                setCurrentPage('menu');
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-left py-2 px-4 rounded-lg hover:bg-secondary transition-colors flex items-center gap-3"
+            >
+              <Icon name="Pizza" size={20} />
+              <span>Меню</span>
+            </button>
+            <button
+              onClick={() => {
+                setCurrentPage('about');
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-left py-2 px-4 rounded-lg hover:bg-secondary transition-colors flex items-center gap-3"
+            >
+              <Icon name="Info" size={20} />
+              <span>О нас</span>
+            </button>
+            <button
+              onClick={() => {
+                setCurrentPage('delivery');
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-left py-2 px-4 rounded-lg hover:bg-secondary transition-colors flex items-center gap-3"
+            >
+              <Icon name="Truck" size={20} />
+              <span>Доставка</span>
+            </button>
+            <button
+              onClick={() => {
+                setCurrentPage('contacts');
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-left py-2 px-4 rounded-lg hover:bg-secondary transition-colors flex items-center gap-3"
+            >
+              <Icon name="Phone" size={20} />
+              <span>Контакты</span>
+            </button>
+            <button
+              onClick={() => {
+                setCurrentPage('reviews');
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-left py-2 px-4 rounded-lg hover:bg-secondary transition-colors flex items-center gap-3"
+            >
+              <Icon name="MessageSquare" size={20} />
+              <span>Отзывы</span>
+            </button>
+            <Separator className="my-2" />
+            <button
+              onClick={() => {
+                setCurrentPage('account');
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-left py-2 px-4 rounded-lg hover:bg-secondary transition-colors flex items-center gap-3"
+            >
+              <Icon name="User" size={20} />
+              <span>Личный кабинет</span>
+            </button>
+          </nav>
+        </SheetContent>
+      </Sheet>
 
       <Dialog open={isCheckoutOpen} onOpenChange={setIsCheckoutOpen}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
