@@ -19,12 +19,14 @@ interface MenuItem {
   name: string;
   description: string;
   price: number;
+  price30?: number;
   category: 'pizza' | 'snacks' | 'drinks';
   image: string;
 }
 
 interface CartItem extends MenuItem {
   quantity: number;
+  size?: '25' | '30';
 }
 
 interface User {
@@ -47,19 +49,19 @@ interface Order {
 }
 
 const menuData: MenuItem[] = [
-  { id: 1, name: 'Маргарита', description: 'Томаты, моцарелла, базилик', price: 450, category: 'pizza', image: '🍕' },
-  { id: 2, name: 'Пепперони', description: 'Пепперони, моцарелла, томатный соус', price: 550, category: 'pizza', image: '🍕' },
-  { id: 3, name: 'Четыре сыра', description: 'Моцарелла, дор блю, пармезан, чеддер', price: 600, category: 'pizza', image: '🍕' },
-  { id: 4, name: 'Гавайская', description: 'Курица, ананас, моцарелла', price: 520, category: 'pizza', image: '🍕' },
-  { id: 5, name: 'Барбекю', description: 'Курица, бекон, соус барбекю, лук', price: 580, category: 'pizza', image: '🍕' },
-  { id: 6, name: 'Вегетарианская', description: 'Перец, помидоры, грибы, маслины, руккола', price: 490, category: 'pizza', image: '🍕' },
-  { id: 7, name: 'Мясная', description: 'Пепперони, ветчина, говядина, курица', price: 650, category: 'pizza', image: '🍕' },
-  { id: 8, name: 'Диабло', description: 'Острая салями, халапеньо, чили', price: 570, category: 'pizza', image: '🍕' },
-  { id: 9, name: 'Сицилийская', description: 'Анчоусы, каперсы, оливки, томаты', price: 590, category: 'pizza', image: '🍕' },
-  { id: 10, name: 'Карбонара', description: 'Бекон, яйцо, пармезан, сливки', price: 560, category: 'pizza', image: '🍕' },
-  { id: 11, name: 'С грушей', description: 'Груша, дор блю, грецкий орех, мёд', price: 620, category: 'pizza', image: '🍕' },
-  { id: 12, name: 'Песто', description: 'Соус песто, моцарелла, томаты черри, руккола', price: 540, category: 'pizza', image: '🍕' },
-  { id: 13, name: 'Морская', description: 'Креветки, кальмары, мидии, лимон', price: 720, category: 'pizza', image: '🍕' },
+  { id: 1, name: 'Маргарита', description: 'Томаты, моцарелла, базилик', price: 450, price30: 650, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/5011c16e-2907-4225-85e3-842b92a19450.jpg' },
+  { id: 2, name: 'Пепперони', description: 'Пепперони, моцарелла, томатный соус', price: 550, price30: 750, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/07d7352d-ac93-4e27-8d55-ac4133b3d931.jpg' },
+  { id: 3, name: 'Четыре сыра', description: 'Моцарелла, дор блю, пармезан, чеддер', price: 600, price30: 800, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/ccff1b8a-6679-482e-b177-cc32dca7439e.jpg' },
+  { id: 4, name: 'Гавайская', description: 'Курица, ананас, моцарелла', price: 520, price30: 720, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/5011c16e-2907-4225-85e3-842b92a19450.jpg' },
+  { id: 5, name: 'Барбекю', description: 'Курица, бекон, соус барбекю, лук', price: 580, price30: 780, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/07d7352d-ac93-4e27-8d55-ac4133b3d931.jpg' },
+  { id: 6, name: 'Вегетарианская', description: 'Перец, помидоры, грибы, маслины, руккола', price: 490, price30: 690, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/ccff1b8a-6679-482e-b177-cc32dca7439e.jpg' },
+  { id: 7, name: 'Мясная', description: 'Пепперони, ветчина, говядина, курица', price: 650, price30: 850, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/07d7352d-ac93-4e27-8d55-ac4133b3d931.jpg' },
+  { id: 8, name: 'Диабло', description: 'Острая салями, халапеньо, чили', price: 570, price30: 770, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/5011c16e-2907-4225-85e3-842b92a19450.jpg' },
+  { id: 9, name: 'Сицилийская', description: 'Анчоусы, каперсы, оливки, томаты', price: 590, price30: 790, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/ccff1b8a-6679-482e-b177-cc32dca7439e.jpg' },
+  { id: 10, name: 'Карбонара', description: 'Бекон, яйцо, пармезан, сливки', price: 560, price30: 760, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/5011c16e-2907-4225-85e3-842b92a19450.jpg' },
+  { id: 11, name: 'С грушей', description: 'Груша, дор блю, грецкий орех, мёд', price: 620, price30: 820, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/07d7352d-ac93-4e27-8d55-ac4133b3d931.jpg' },
+  { id: 12, name: 'Песто', description: 'Соус песто, моцарелла, томаты черри, руккола', price: 540, price30: 740, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/ccff1b8a-6679-482e-b177-cc32dca7439e.jpg' },
+  { id: 13, name: 'Морская', description: 'Креветки, кальмары, мидии, лимон', price: 720, price30: 920, category: 'pizza', image: 'https://cdn.poehali.dev/projects/2b21aadd-60ed-4589-8a75-633a6fb0ed0a/files/5011c16e-2907-4225-85e3-842b92a19450.jpg' },
   { id: 14, name: 'Куриные крылышки', description: 'Острые крылышки с соусом барбекю', price: 320, category: 'snacks', image: '🍗' },
   { id: 15, name: 'Картофель фри', description: 'Хрустящий картофель с соусом', price: 180, category: 'snacks', image: '🍟' },
   { id: 16, name: 'Чесночные гренки', description: 'С сыром и чесночным соусом', price: 150, category: 'snacks', image: '🥖' },
@@ -85,33 +87,16 @@ function PizzaShop() {
   const [currentPage, setCurrentPage] = useState<'home' | 'menu' | 'about' | 'delivery' | 'contacts' | 'reviews' | 'account'>('home');
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [addingToCart, setAddingToCart] = useState<number | null>(null);
-  const [user, setUser] = useState<User | null>({
-    name: 'Гость',
-    phone: '+7 999 999-99-99',
-    email: 'guest@pizza.ru',
-    loyaltyPoints: 150,
-    orders: [
-      {
-        id: 1,
-        date: '01.12.2024',
-        items: [
-          { ...menuData[0], quantity: 2 },
-          { ...menuData[13], quantity: 1 },
-        ],
-        total: 1220,
-        status: 'Доставлено',
-        deliveryMethod: 'delivery',
-        paymentMethod: 'card',
-        address: 'ул. Пушкина, д. 10, кв. 5',
-      },
-    ],
-  });
+  const [selectedSize, setSelectedSize] = useState<Record<number, '25' | '30'>>({});
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [authPhone, setAuthPhone] = useState('');
+  const [user, setUser] = useState<User | null>(null);
 
   const [deliveryMethod, setDeliveryMethod] = useState<'delivery' | 'pickup'>('delivery');
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'cash' | 'online'>('card');
   const [orderForm, setOrderForm] = useState({
-    name: user?.name || '',
-    phone: user?.phone || '',
+    name: '',
+    phone: '',
     address: '',
     comment: '',
   });
@@ -124,21 +109,63 @@ function PizzaShop() {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
-  const addToCart = (item: MenuItem) => {
+  const handleLogin = () => {
+    if (!authPhone || authPhone.length < 10) {
+      toast({
+        title: 'Ошибка',
+        description: 'Введите корректный номер телефона',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setUser({
+      name: 'Пользователь',
+      phone: authPhone,
+      email: `user${authPhone.slice(-4)}@pizza.ru`,
+      loyaltyPoints: 0,
+      orders: [],
+    });
+
+    setOrderForm(prev => ({ ...prev, phone: authPhone }));
+    setIsAuthOpen(false);
+    toast({
+      title: 'Добро пожаловать!',
+      description: 'Вы успешно вошли в систему',
+    });
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setOrderForm({ name: '', phone: '', address: '', comment: '' });
+    toast({
+      title: 'Вы вышли',
+      description: 'До новых встреч!',
+    });
+  };
+
+  const addToCart = (item: MenuItem, size?: '25' | '30') => {
     setAddingToCart(item.id);
     
     setTimeout(() => {
+      const pizzaSize = item.category === 'pizza' ? (size || selectedSize[item.id] || '25') : undefined;
+      const itemPrice = item.category === 'pizza' && pizzaSize === '30' ? (item.price30 || item.price) : item.price;
+      
       setCart(prev => {
-        const existing = prev.find(i => i.id === item.id);
+        const existing = prev.find(i => i.id === item.id && i.size === pizzaSize);
         if (existing) {
-          return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i);
+          return prev.map(i => 
+            i.id === item.id && i.size === pizzaSize 
+              ? { ...i, quantity: i.quantity + 1 } 
+              : i
+          );
         }
-        return [...prev, { ...item, quantity: 1 }];
+        return [...prev, { ...item, price: itemPrice, quantity: 1, size: pizzaSize }];
       });
       
       toast({
         title: 'Добавлено в корзину',
-        description: `${item.name} - ${item.price}₽`,
+        description: `${item.name}${pizzaSize ? ` (${pizzaSize}см)` : ''} - ${itemPrice}₽`,
       });
       
       setAddingToCart(null);
@@ -239,14 +266,44 @@ function PizzaShop() {
                 {menuData.filter(item => item.category === 'pizza').slice(0, 3).map(item => (
                   <Card key={item.id} className="hover:shadow-lg transition-all">
                     <CardHeader>
-                      <div className="text-6xl mb-4">{item.image}</div>
+                      <div className="w-full h-48 overflow-hidden rounded-t-lg">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      </div>
                       <CardTitle>{item.name}</CardTitle>
                       <CardDescription>{item.description}</CardDescription>
                     </CardHeader>
+                    <CardContent>
+                      {item.category === 'pizza' && (
+                        <div className="flex gap-2 mb-3">
+                          <Button
+                            size="sm"
+                            variant={selectedSize[item.id] === '25' || !selectedSize[item.id] ? 'default' : 'outline'}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedSize(prev => ({ ...prev, [item.id]: '25' }));
+                            }}
+                            className="flex-1"
+                          >
+                            25см - {item.price}₽
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant={selectedSize[item.id] === '30' ? 'default' : 'outline'}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedSize(prev => ({ ...prev, [item.id]: '30' }));
+                            }}
+                            className="flex-1"
+                          >
+                            30см - {item.price30}₽
+                          </Button>
+                        </div>
+                      )}
+                    </CardContent>
                     <CardFooter className="flex justify-between items-center">
                       <span className="text-2xl font-bold text-primary">{item.price}₽</span>
                       <Button 
-                        onClick={() => addToCart(item)}
+                        onClick={() => addToCart(item, selectedSize[item.id] || '25')}
                         disabled={addingToCart === item.id}
                         className={addingToCart === item.id ? 'scale-110' : ''}
                       >
@@ -296,14 +353,44 @@ function PizzaShop() {
                   {menuData.filter(item => item.category === 'pizza').map(item => (
                     <Card key={item.id} className="hover:shadow-lg transition-all">
                       <CardHeader>
-                        <div className="text-6xl mb-4">{item.image}</div>
+                        <div className="w-full h-48 overflow-hidden rounded-t-lg">
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                        </div>
                         <CardTitle>{item.name}</CardTitle>
                         <CardDescription>{item.description}</CardDescription>
                       </CardHeader>
+                      <CardContent>
+                        {item.category === 'pizza' && (
+                          <div className="flex gap-2 mb-3">
+                            <Button
+                              size="sm"
+                              variant={selectedSize[item.id] === '25' || !selectedSize[item.id] ? 'default' : 'outline'}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedSize(prev => ({ ...prev, [item.id]: '25' }));
+                              }}
+                              className="flex-1"
+                            >
+                              25см - {item.price}₽
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant={selectedSize[item.id] === '30' ? 'default' : 'outline'}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedSize(prev => ({ ...prev, [item.id]: '30' }));
+                              }}
+                              className="flex-1"
+                            >
+                              30см - {item.price30}₽
+                            </Button>
+                          </div>
+                        )}
+                      </CardContent>
                       <CardFooter className="flex justify-between items-center">
                         <span className="text-2xl font-bold text-primary">{item.price}₽</span>
                         <Button 
-                          onClick={() => addToCart(item)}
+                          onClick={() => addToCart(item, selectedSize[item.id] || '25')}
                           disabled={addingToCart === item.id}
                           className={addingToCart === item.id ? 'scale-110' : ''}
                         >
@@ -320,7 +407,9 @@ function PizzaShop() {
                   {menuData.filter(item => item.category === 'snacks').map(item => (
                     <Card key={item.id} className="hover:shadow-lg transition-all">
                       <CardHeader>
-                        <div className="text-6xl mb-4">{item.image}</div>
+                        <div className="w-full h-48 overflow-hidden rounded-t-lg">
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                        </div>
                         <CardTitle>{item.name}</CardTitle>
                         <CardDescription>{item.description}</CardDescription>
                       </CardHeader>
@@ -344,7 +433,9 @@ function PizzaShop() {
                   {menuData.filter(item => item.category === 'drinks').map(item => (
                     <Card key={item.id} className="hover:shadow-lg transition-all">
                       <CardHeader>
-                        <div className="text-6xl mb-4">{item.image}</div>
+                        <div className="w-full h-48 overflow-hidden rounded-t-lg">
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                        </div>
                         <CardTitle>{item.name}</CardTitle>
                         <CardDescription>{item.description}</CardDescription>
                       </CardHeader>
@@ -542,6 +633,55 @@ function PizzaShop() {
         );
 
       case 'account':
+        if (!user) {
+          return (
+            <div className="max-w-2xl mx-auto">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Войдите в систему</CardTitle>
+                  <CardDescription>
+                    Авторизуйтесь, чтобы получить доступ к личному кабинету, истории заказов и программе лояльности
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="flex flex-col items-center py-8">
+                    <div className="text-6xl mb-4">🔐</div>
+                    <p className="text-center text-muted-foreground mb-6">
+                      Войдите с помощью номера телефона и получайте бонусы за каждый заказ
+                    </p>
+                    <Button size="lg" onClick={() => setIsAuthOpen(true)}>
+                      <Icon name="LogIn" className="mr-2" />
+                      Войти в систему
+                    </Button>
+                  </div>
+                  <Separator />
+                  <div className="space-y-3">
+                    <h3 className="font-semibold">Преимущества регистрации:</h3>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <Icon name="Check" className="text-primary mt-1" size={16} />
+                        <span>Копите баллы и получайте скидки</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Icon name="Check" className="text-primary mt-1" size={16} />
+                        <span>История всех ваших заказов</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Icon name="Check" className="text-primary mt-1" size={16} />
+                        <span>Быстрое оформление повторных заказов</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Icon name="Check" className="text-primary mt-1" size={16} />
+                        <span>Специальные предложения и акции</span>
+                      </li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          );
+        }
+        
         return (
           <div className="max-w-4xl mx-auto space-y-8">
             <h1 className="text-4xl font-bold mb-8">Личный кабинет</h1>
@@ -614,7 +754,7 @@ function PizzaShop() {
               <CardHeader>
                 <CardTitle>Мои данные</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="space-y-4">
                 <div>
                   <p className="text-sm text-muted-foreground">Имя</p>
                   <p className="font-semibold">{user?.name}</p>
@@ -627,6 +767,11 @@ function PizzaShop() {
                   <p className="text-sm text-muted-foreground">Email</p>
                   <p className="font-semibold">{user?.email}</p>
                 </div>
+                <Separator />
+                <Button variant="outline" className="w-full" onClick={handleLogout}>
+                  <Icon name="LogOut" className="mr-2" size={16} />
+                  Выйти из аккаунта
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -672,9 +817,16 @@ function PizzaShop() {
               <Icon name={theme === 'light' ? 'Moon' : 'Sun'} size={20} />
             </Button>
             
-            <Button variant="ghost" size="icon" onClick={() => setCurrentPage('account')}>
-              <Icon name="User" size={20} />
-            </Button>
+            {user ? (
+              <Button variant="ghost" size="icon" onClick={() => setCurrentPage('account')}>
+                <Icon name="User" size={20} />
+              </Button>
+            ) : (
+              <Button variant="default" size="sm" onClick={() => setIsAuthOpen(true)}>
+                <Icon name="LogIn" className="mr-2" size={16} />
+                Войти
+              </Button>
+            )}
 
             <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
               <SheetTrigger asChild>
@@ -702,9 +854,11 @@ function PizzaShop() {
                       <div className="space-y-4">
                         {cart.map(item => (
                           <div key={item.id} className="flex gap-4 border rounded-lg p-4">
-                            <div className="text-4xl">{item.image}</div>
+                            <div className="w-20 h-20 overflow-hidden rounded-lg flex-shrink-0">
+                              <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                            </div>
                             <div className="flex-1">
-                              <h4 className="font-semibold">{item.name}</h4>
+                              <h4 className="font-semibold">{item.name}{item.size ? ` (${item.size}см)` : ''}</h4>
                               <p className="text-sm text-muted-foreground mb-2">{item.price}₽</p>
                               <div className="flex items-center gap-2">
                                 <Button
@@ -1001,6 +1155,39 @@ function PizzaShop() {
             <Button className="w-full" size="lg" onClick={handleCheckout}>
               Подтвердить заказ
             </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isAuthOpen} onOpenChange={setIsAuthOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Вход в систему</DialogTitle>
+            <DialogDescription>
+              Введите ваш номер телефона для входа или регистрации
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4 py-4">
+            <div>
+              <Label htmlFor="authPhone">Номер телефона *</Label>
+              <Input
+                id="authPhone"
+                type="tel"
+                value={authPhone}
+                onChange={e => setAuthPhone(e.target.value)}
+                placeholder="+7 999 999-99-99"
+              />
+            </div>
+
+            <Button className="w-full" size="lg" onClick={handleLogin}>
+              <Icon name="LogIn" className="mr-2" size={16} />
+              Войти
+            </Button>
+
+            <p className="text-xs text-center text-muted-foreground">
+              При входе вы автоматически соглашаетесь с условиями использования и программой лояльности
+            </p>
           </div>
         </DialogContent>
       </Dialog>
